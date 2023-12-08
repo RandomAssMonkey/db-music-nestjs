@@ -3,12 +3,29 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title><%= message %></title>
+    <title></title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
     <script src='main.js'></script>
 </head>
 <body>
-    <p><%= message %></p>
+  <h1>Songs:</h1>
+  <table id="table">
+    <% songs.forEach((song) => { %>
+        <tr>
+        <td class="td"><%= song.id %></td>
+        <td class="td"><%= song.title %></td>
+        <td class="td"><%= song.artist %></td>
+        <td class="td"><%= song.length %></td>
+        <td class="td"><form method="post" action="/deleteSong">
+          <input type="hidden" value="<%= song.id%>" name="id">
+          <button type="submit">Törlés</button>
+        </form></td>
+        <td class="td">
+          <a href="/modifyForm/<%= song.id%>">Módosítás</a>
+        </td>
+        </tr>
+    <% }) %>
+    </table>
 </body>
 </html>
